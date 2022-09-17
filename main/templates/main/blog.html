@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Blog List</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>게시판 페이지</h1>
+    <table>
+      {% for list in postlist %}
+      <ul>
+        <li>{{list.postname}}</li>
+        <li>{{list.contents}}</li>
+      </ul>
+      {% endfor %}
+    </table>
+  </body>
+</html>
