@@ -4,17 +4,17 @@
     <title>Blog List</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
     <h1>게시판 페이지</h1>
+    <a href="/">home으로 이동</a>
     <table>
       {% for list in postlist %}
       <ul>
-        <li>{{list.postname}}</li>
-        <li>{{list.contents}}</li>
+        <li><a href="{{list.pk}}">{{list.postname}}</a></li>
       </ul>
       {% endfor %}
     </table>
+    <a href="new_post">글쓰기</a>
   </body>
 </html>

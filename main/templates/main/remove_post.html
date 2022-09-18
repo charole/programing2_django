@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>글삭제 페이지</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>글삭제 페이지</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <h2>{{post.postname}} - 삭제하기</h2>
+      <button type="submit">삭제</button>
+      <a href="/blog/">목록</a>
+    </form>
+  </body>
+</html>

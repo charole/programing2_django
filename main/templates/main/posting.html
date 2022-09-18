@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>posting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>게시글 개별 페이지</h1>
+    <a href="/">home</a>
+    <p>{{post.postname}}</p>
+    <p>{{post.contents}}</p>
+    {% if post.mainphoto %}
+    <img src="{{post.mainphoto.url}}" alt="image" height="600" />
+    <br />
+    {% endif %}
+    <a href="/blog/{{post.pk}}/remove">삭제</a>
+    <a href="/blog/">목록</a>
+  </body>
+</html>
