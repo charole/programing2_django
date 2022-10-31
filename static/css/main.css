@@ -1,3 +1,35 @@
 .header {
+	position: absolute;
+	top: 0;
 	background: #dadada;
+	height: 60px;
+	width: 100%;
+	z-index: 100;
+}
+.content {
+	margin-top: 60px;
+}
+
+.header-menu-wrapper > ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-left: 25px;
+}
+.header-menu-wrapper > ul > li {
+	margin-right: 25px;
+	color: #249a7b;
+}
+.header-menu-wrapper > ul > li:last-child {
+	margin-right: 0;
+}
+.login-button-wrapper > span {
+	margin-right: 25px;
+	color: #249a7b;
+}
+.login-button-wrapper > span:last-child {
+	margin-right: 0;
 }
