@@ -15,3 +15,8 @@ class Post(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=10)
     age = models.IntegerField()
+
+
+class Example(models.Model):
+    exam_index = models.IntegerField()
+    title = models.CharField(max_length=10)
