@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'main/index.html')
 
 
-def login(request):
+def login_page(request):
     return render(request, 'main/login.html')
 
 
@@ -69,6 +69,7 @@ def account_list(request):
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = AccountSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -77,13 +78,11 @@ def account_list(request):
 
 @csrf_exempt
 def account(request, pk):
-
     obj = Account.objects.get(pk=pk)
 
     if request.method == 'GET':
         serializer = AccountSerializer(obj)
         return JsonResponse(serializer.data, safe=False)
-
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = AccountSerializer(obj, data=data)
@@ -91,7 +90,6 @@ def account(request, pk):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
-
     elif request.method == 'DELETE':
         obj.delete()
         return HttpResponse(status=204)

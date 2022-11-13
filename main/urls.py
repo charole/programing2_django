@@ -7,7 +7,7 @@ app_name = 'main'
 
 urlpatterns = [
     path('', index),
-    path('login/', login),
+    path('login_page/', login_page),
     path('signup/', signup),
     path('blog/', blog),
     path('blog/<int:pk>', posting),
@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('accounts/', account_list),
     path('accounts/<int:pk>', account),
+    path('login/', login),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
