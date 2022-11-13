@@ -12,11 +12,10 @@ class Post(models.Model):
         return self.postname
 
 
-class User(models.Model):
-    name = models.CharField(max_length=10)
+class Account(models.Model):
+    no = models.AutoField(db_column='NO', primary_key=True)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
     age = models.IntegerField()
-
-
-class Example(models.Model):
-    exam_index = models.IntegerField()
-    title = models.CharField(max_length=10)

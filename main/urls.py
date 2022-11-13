@@ -13,6 +13,9 @@ urlpatterns = [
     path('blog/<int:pk>', posting),
     path('blog/new_post', new_post),
     path('blog/<int:pk>/remove', remove_post),
+
+    path('accounts/', account_list),
+    path('accounts/<int:pk>', account),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
