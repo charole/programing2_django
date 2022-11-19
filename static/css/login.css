@@ -1,6 +1,7 @@
 .container{
     height: 100vh !important;
     display: flex;
+    background: #EEEEF2;
 }
 
 .card{

@@ -1,9 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
-from .models import Post, Account
-from .serializers import AccountSerializer
+from .models import Post, Account, Example
+from .serializers import AccountSerializer, ExampleSerializer
 from rest_framework.parsers import JSONParser
+from rest_framework import status
 
 # Create your views here.
 
@@ -103,6 +104,54 @@ def login(request):
         obj = Account.objects.get(email=search_email)
 
         if data['password'] == obj.password:
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=400)
+
+# example
+
+def example_list(request):
+    if request.method == 'GET':
+        query_set = Example.objects.all()
+        serializer = ExampleSerializer(query_set, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = ExampleSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+
+@csrf_exempt
+def example(request, pk):
+    obj = Example.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        serializer = ExampleSerializer(obj)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = ExampleSerializer(obj, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        obj.delete()
+        return HttpResponse(status=204) 
+
+@csrf_exempt
+def solve(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        search_answer = data['answer']
+        obj = Example.objects.get(answer=search_answer)
+
+        if data['answer'] == obj.answer:
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=400)

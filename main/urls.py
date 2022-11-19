@@ -17,6 +17,8 @@ urlpatterns = [
     path('accounts/', account_list),
     path('accounts/<int:pk>', account),
     path('login/', login),
+
+    path('examples/', example_list)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
