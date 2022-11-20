@@ -73,7 +73,7 @@ def account_list(request):
 
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
 
 
@@ -89,7 +89,7 @@ def account(request, pk):
         serializer = AccountSerializer(obj, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
     elif request.method == 'DELETE':
         obj.delete()
@@ -120,6 +120,7 @@ def login(request):
 # example
 
 
+@csrf_exempt
 def example_list(request):
     if request.method == 'GET':
         query_set = Example.objects.all()
@@ -127,13 +128,12 @@ def example_list(request):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        print(request)
         data = JSONParser().parse(request)
         serializer = ExampleSerializer(data=data)
 
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
 
 
@@ -149,7 +149,7 @@ def example(request, pk):
         serializer = ExampleSerializer(obj, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
     elif request.method == 'DELETE':
         obj.delete()
