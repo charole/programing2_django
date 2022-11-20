@@ -19,7 +19,11 @@ urlpatterns = [
     path('login/', login),
 
     path('examples/', example_list),
-    path('example/<int:pk>', example)
+    path('example/<int:pk>', example),
+
+    path('point/add/', save_point),
+    path('point/use/hint/', use_point),
+    path('find/user/', find_user)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

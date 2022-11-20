@@ -30,5 +30,6 @@ class Example(models.Model):
     exam_question = models.TextField(default='', null=True, blank=True)
     answer = models.TextField(default='')
     example = models.TextField(default='', null=True, blank=True)
+    hint = models.TextField(default='', null=True, blank=True)
     point = models.IntegerField(default=0, null=True)
     level = models.IntegerField(default=0, null=True, blank=True)

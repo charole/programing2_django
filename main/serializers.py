@@ -13,4 +13,4 @@ class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
         fields = ('id', 'title', 'content', 'exam_question',
-                  'answer', 'example', 'point', 'level')
+                  'answer', 'example', 'hint', 'point', 'level')

@@ -97,6 +97,16 @@ def account(request, pk):
 
 
 @csrf_exempt
+def find_user(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        search_email = data['email']
+        obj = Account.objects.get(email=search_email)
+        serializer = AccountSerializer(obj)
+        return JsonResponse(serializer.data, safe=False)
+
+
+@csrf_exempt
 def update_account_point(request):
     if request.method == 'POST':
         update_point = Account.objects.update(
@@ -165,5 +175,41 @@ def solve(request):
 
         if data['answer'] == obj.answer:
             return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=400)
+
+
+@csrf_exempt
+def save_point(request):
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        search_email = data['email']
+        add_point = data['point']
+        user = Account.objects.get(email=search_email)
+
+        if user:
+            point = Account.objects.get(email=search_email).point
+            Account.objects.filter(email=search_email).update(
+                point=point + add_point)
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=400)
+
+
+@csrf_exempt
+def use_point(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        search_email = data['email']
+        user = Account.objects.get(email=search_email)
+
+        if user:
+            point = Account.objects.get(email=search_email).point
+            if point > 0:
+                Account.objects.filter(email=search_email).update(
+                    point=point - 1)
+                return HttpResponse(status=200)
+            else:
+                return JsonResponse({'message': '이런! 남은 포인트가 없어요!'}, status=201)
         else:
             return HttpResponse(status=400)
