@@ -5,9 +5,9 @@ from rest_framework import serializers
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('no', 'name', 'email', 'password', 'created_at', 'age')
+        fields = ('no', 'name', 'email', 'password', 'created_at', 'age', 'point')
 
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
-        fields = ('index', 'title', 'content', 'answer', 'example', 'point')
+        fields = ('index', 'title', 'content', 'exam_question', 'answer', 'example', 'point')

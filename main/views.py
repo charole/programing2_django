@@ -95,6 +95,13 @@ def account(request, pk):
         obj.delete()
         return HttpResponse(status=204)
 
+@csrf_exempt
+def update_account_point(request):
+    if request.method == 'POST':
+        update_point = Account.objects.update(
+            point = request.POST['point']
+        )
+    return redirect('/accounts/')
 
 @csrf_exempt
 def login(request):

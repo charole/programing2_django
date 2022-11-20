@@ -20,11 +20,13 @@ class Account(models.Model):
     password = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     age = models.IntegerField()
+    point = models.IntegerField(null=True)
 
 class Example(models.Model):
     index = models.IntegerField(db_column='idx', primary_key=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
+    exam_question = models.TextField()
     answer = models.TextField()
     example = models.TextField()
     point = models.IntegerField()
