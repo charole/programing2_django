@@ -18,7 +18,8 @@ urlpatterns = [
     path('accounts/<int:pk>', account),
     path('login/', login),
 
-    path('examples/', example_list)
+    path('examples/', example_list),
+    path('example/<int:pk>', example)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

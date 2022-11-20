@@ -95,13 +95,15 @@ def account(request, pk):
         obj.delete()
         return HttpResponse(status=204)
 
+
 @csrf_exempt
 def update_account_point(request):
     if request.method == 'POST':
         update_point = Account.objects.update(
-            point = request.POST['point']
+            point=request.POST['point']
         )
     return redirect('/accounts/')
+
 
 @csrf_exempt
 def login(request):
@@ -117,6 +119,7 @@ def login(request):
 
 # example
 
+
 def example_list(request):
     if request.method == 'GET':
         query_set = Example.objects.all()
@@ -124,6 +127,7 @@ def example_list(request):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
+        print(request)
         data = JSONParser().parse(request)
         serializer = ExampleSerializer(data=data)
 
@@ -149,7 +153,8 @@ def example(request, pk):
         return JsonResponse(serializer.errors, status=400)
     elif request.method == 'DELETE':
         obj.delete()
-        return HttpResponse(status=204) 
+        return HttpResponse(status=204)
+
 
 @csrf_exempt
 def solve(request):
