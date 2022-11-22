@@ -213,3 +213,19 @@ def use_point(request):
                 return JsonResponse({'message': '이런! 남은 포인트가 없어요!'}, status=201)
         else:
             return HttpResponse(status=400)
+
+@csrf_exempt
+def change_status(request):
+    if request.method == 'POST':
+        data = JSONParser.parse(request)
+        search_email = data['email']
+        change_status = data['status']
+
+        user = Account.objects.get(emial=search_email)
+        if user:
+            Account.objects.filter(email=search_email).update(
+                status = change_status
+            )
+            return HttpResponse(status=200)
+        else:
+            return JsonResponse(status=400)

@@ -29,13 +29,25 @@ class Example(models.Model):
         ('Simple', 'Simple')
     )
 
+    LEVEL = (
+        ('하', '하'),
+        ('중', '중'),
+        ('상', '상')
+    )
+
+    STATUS = (
+        ('통과', '통과'),
+        ('미통과', '미통과')
+    )
+
     id = models.AutoField(db_column='id', primary_key=True)
     title = models.CharField(max_length=100)
     content = models.TextField(default='')
     exam_question = models.TextField(default='', null=True, blank=True)
-    exam_type = models.CharField(choices=EXAM_TYPES, max_length=10)
-    answer = models.TextField(default='')
+    exam_type = models.CharField(choices=EXAM_TYPES, default='Simple', max_length=10)
     example = models.TextField(default='', null=True, blank=True)
+    answer = models.TextField(default='')
     hint = models.TextField(default='', null=True, blank=True)
     point = models.IntegerField(default=0, null=True)
-    level = models.IntegerField(default=0, null=True, blank=True)
+    level = models.CharField(choices=LEVEL, default='하', max_length=1)
+    status = models.CharField(choices=STATUS, default='미통과', max_length=3)

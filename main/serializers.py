@@ -12,5 +12,5 @@ class AccountSerializer(serializers.ModelSerializer):
 class ExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Example
-        fields = ('id', 'title', 'content', 'exam_question', 'exam_type'
-                  'answer', 'example', 'hint', 'point', 'level')
+        fields = ('id', 'title', 'content', 'exam_question', 'exam_type',
+                  'answer', 'example', 'hint', 'point', 'level', 'status')
