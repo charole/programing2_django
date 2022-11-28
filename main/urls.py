@@ -23,7 +23,8 @@ urlpatterns = [
 
     path('point/add/', save_point),
     path('point/use/hint/', use_point),
-    path('find/user/', find_user)
+    path('find/user/', find_user),
+    path('users/', get_users)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

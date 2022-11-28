@@ -5,6 +5,7 @@ from .models import Post, Account, Example
 from .serializers import AccountSerializer, ExampleSerializer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
+from rest_framework.decorators import api_view
 
 # Create your views here.
 
@@ -214,6 +215,7 @@ def use_point(request):
         else:
             return HttpResponse(status=400)
 
+
 @csrf_exempt
 def change_status(request):
     if request.method == 'POST':
@@ -221,11 +223,19 @@ def change_status(request):
         search_email = data['email']
         change_status = data['status']
 
-        user = Account.objects.get(emial=search_email)
+        user = Account.objects.get(email=search_email)
         if user:
             Account.objects.filter(email=search_email).update(
-                status = change_status
+                status=change_status
             )
             return HttpResponse(status=200)
         else:
             return JsonResponse(status=400)
+
+
+@csrf_exempt
+@api_view(["GET"])
+def get_users(request):
+    users = Account.objects.all()
+    serializer = AccountSerializer(users, many=True)
+    return JsonResponse(serializer.data, safe=False)
