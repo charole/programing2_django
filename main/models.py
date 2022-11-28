@@ -51,3 +51,4 @@ class Example(models.Model):
     point = models.IntegerField(default=0, null=True)
     level = models.CharField(choices=LEVEL, default='하', max_length=1)
     status = models.CharField(choices=STATUS, default='미통과', max_length=3)
+    clear_example_count = models.IntegerField(default=0, null=True)
