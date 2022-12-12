@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('accounts/', account_list),
     path('accounts/<int:pk>', account),
+    path('account/clear_exam', account_solve_example),
     path('login/', login),
 
     path('examples/', example_list),

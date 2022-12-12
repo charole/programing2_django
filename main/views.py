@@ -96,6 +96,19 @@ def account(request, pk):
         obj.delete()
         return HttpResponse(status=204)
 
+@csrf_exempt
+def account_solve_example(request):
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        search_email = data['email']
+        user = Account.objects.get(email=search_email)
+
+        if user:
+            Account.objects.filter(email=search_email).update(
+                clear_example_count = user.clear_example_count + 1)
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=400)
 
 @csrf_exempt
 def find_user(request):
@@ -189,9 +202,8 @@ def save_point(request):
         user = Account.objects.get(email=search_email)
 
         if user:
-            point = Account.objects.get(email=search_email).point
             Account.objects.filter(email=search_email).update(
-                point=point + add_point)
+                point=user.point + add_point)
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=400)
